@@ -52,6 +52,8 @@ cd /path/to/footprints-public
 docker-compose exec ruby bash
 ```
 
+4. To bring the application back down, run `docker-compose down`
+
 #### Note
 
 Footprints requires anybody who logs in to also be a crafter. You will have to manually add a person to the system as a crafter in order to log into Footprints.
