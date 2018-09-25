@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/mongeeses/footprints-public.svg?branch=develop)](https://travis-ci.org/mongeeses/footprints-public)
 # Footprints
 
 This program is an applicant tracking tool that allows users to manage the employee hiring process from start to finish.
