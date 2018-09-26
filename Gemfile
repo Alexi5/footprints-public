@@ -34,6 +34,8 @@ group :test, :development do
   gem "teaspoon-jasmine"
   gem "awesome_print"
   gem "better_errors", '1.1.0'
+  gem "net-ssh", '2.8.0'
+  gem "capistrano", :require => false
 end
 
 gem 'simplecov', :require => false, :group => :test
