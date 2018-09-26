@@ -14,9 +14,6 @@ RUN bundle install
 # Copy in application's source
 COPY . /app
 
-# Apply migrations
-RUN bin/rake db:migrate
-
 ENTRYPOINT ["/app/docker-entry.sh"]
 
 CMD ["bin/rails", "s", "-p", "3000", "-b", "0.0.0.0"]
