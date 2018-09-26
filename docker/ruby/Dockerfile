@@ -14,8 +14,9 @@ RUN bundle install
 # Copy in application's source
 COPY . /app
 
-# Remove any stale PID tmp files on build
-RUN rm /app/tmp/pids/server.pid
-
 # Apply migrations
 RUN bin/rake db:migrate
+
+ENTRYPOINT ["/app/docker-entry.sh"]
+
+CMD ["bin/rails", "s", "-p", "3000", "-b", "0.0.0.0"]
