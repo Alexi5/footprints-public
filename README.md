@@ -43,7 +43,7 @@ cd /path/to/footprints-public
 docker-compose up
 ``` 
 
-This step should bring up the Rails application. Browse to [http://localhost:3000](http://localhost:3000) and you should see a web application running.
+This step should run the Rails application, **which may fail if you have not run the migrations yet**. Browse to [http://localhost:3000](http://localhost:3000) and you should see a web application running.
 
 3. To manage gems, or run Rails, Bundler, or Rake commands, you will want to do that from inside of the running Ruby container:
 
@@ -53,7 +53,9 @@ cd /path/to/footprints-public
 docker-compose exec ruby bash
 ```
 
-4. To bring the application back down, run `docker-compose down`
+4. To run the migrations, use the instructions from the previous step to open a bash session inside of the running `ruby` container, and then execute the command `bin/rake db:migrate` to run all of the migrations.
+
+5. To bring the application back down, run `docker-compose down`
 
 #### Note
 

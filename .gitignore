@@ -16,3 +16,4 @@ db/footprints_test.db
 sinatra/
 .rspec-local
 db/*.sqlite3
+db/*.db3
