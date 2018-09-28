@@ -1,4 +1,6 @@
 class Skills
+  # A hash of possible skills, where the key is the string name of the skill,
+  # and the value is the int representation used to store the value in the db.
   OPTIONS = {
     'Student' => 1,
     'Resident' => 2,
@@ -32,6 +34,7 @@ class Skills
 
   private
 
+  # Return the integer key for the given skill.
   def normalize(skills)
     return skills.to_i if skills.to_i > 0
 
