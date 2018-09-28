@@ -2,6 +2,10 @@ FROM ruby:2.1.5
 
 RUN apt-get update -qq
 
+RUN apt-get install -y \
+  mysql-client \
+  vim
+
 # Defailt to /app directory
 RUN mkdir /app
 WORKDIR /app
