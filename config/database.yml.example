@@ -1,6 +1,11 @@
 development:
-  adapter: sqlite3
-  database: db/development.db3
+  adapter: mysql2
+  config: utf8
+  host: mysql
+  database: footprints
+  user: root
+  password: password
+  url: mysql2://root:password@mysql/footprints
 
 local:
   adapter: sqlite3
