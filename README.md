@@ -61,5 +61,20 @@ docker-compose exec ruby bash
 
 Footprints requires anybody who logs in to also be a crafter. You will have to manually add a person to the system as a crafter in order to log into Footprints.
 
+### Connecting to Production DB
+
+Our production db for Footprints is only accessible from within the VPC. This means that you'll need to use an SSH tunnel through one of our production EC2 instances in order to access it. To do with this with SequelPro, configure your client in the following way:
+
+* SSH Mode
+* MySQL Host: `footprints.ce6t38dqxj5w.us-east-1.rds.amazonaws.com`
+* Username: `footprints_db`
+* Password: `{the password}`
+* Database: `footprints_production`
+* SSH Host: `ec2-18-209-172-193.compute-1.amazonaws.com`
+* SSH User: `ubuntu`
+* SSH Key: `{path to your footprints pem file}`
+
+You should now be able to access the DB!
+
 ### Trello
 https://trello.com/b/GuywdyDX/footprints
