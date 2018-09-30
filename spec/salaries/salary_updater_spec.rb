@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/salaries/salary_updater'
+require 'salaries/salary_updater'
 
 describe SalaryUpdater do
   def create_monthly_salaries

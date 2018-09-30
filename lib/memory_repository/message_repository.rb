@@ -1,6 +1,6 @@
 require 'memory_repository/models/message'
 require 'memory_repository/base_repository'
-require './lib/repository'
+require 'repository'
 
 module MemoryRepository
   class MessageRepository

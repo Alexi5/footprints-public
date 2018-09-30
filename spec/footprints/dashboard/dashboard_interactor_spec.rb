@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/dashboard/dashboard_interactor'
+require 'dashboard/dashboard_interactor'
 
 describe DashboardInteractor do
   let(:repo) { Footprints::Repository }

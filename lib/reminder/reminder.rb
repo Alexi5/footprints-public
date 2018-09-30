@@ -1,4 +1,7 @@
 module Footprints
+
+  # Reminder is an emailer service that sends emails about applicants still in
+  # the pipeline.
   class Reminder
     class << self
 
@@ -30,4 +33,5 @@ module Footprints
 
     end
   end
+
 end

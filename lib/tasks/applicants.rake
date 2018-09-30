@@ -1,6 +1,6 @@
-require './lib/highrise/highrise_puller_interactor'
-require './lib/repository'
-require './lib/reminder/reminder'
+require 'highrise/highrise_puller_interactor'
+require 'repository'
+require 'reminder/reminder'
 
 namespace :db do
   desc "Destroys all Applicant Records for Staging"

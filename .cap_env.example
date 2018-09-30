@@ -1,0 +1,28 @@
+#!/bin/sh
+
+set -o allexport
+
+# Configuration for Capistrano
+#
+# If deploying from your local machine, copy this example file to `.cap_env`
+# and then use the bash `source` command to load its contents into your shell:
+#
+# $> cd /path/to/footprints-public
+# $> cp .cap_env.example .cap_env
+# $> vim .cap_env # Set the correct values for your local machine
+# $> source .cap_env # Load the environment vars into your shell session
+
+# IP address or hostname to deploy to
+CAPISTRANO_SERVER=some.server-address-here.com
+
+# User with deploy privileges on target machine
+CAPISTRANO_DEPLOY_USER=somedeployuser
+
+# Path to the SSH key (eg. ~/.ssh/some-pem-file.pem)
+CAPISTRANO_DEPLOY_PATH_TO_SSH_KEY=/path/to/ssh/key
+
+# Path to staging destination on target machine
+CAPISTRANO_STAGING_DEPLOY_TO=/var/www/some/staging/filepath
+
+# Path to production destination on target machine
+CAPISTRANO_PRODUCTION_DEPLOY_TO=/var/www/some/production/filepath

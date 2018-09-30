@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/memory_repository/assigned_craftsman_record_repository'
+require 'memory_repository/assigned_craftsman_record_repository'
 require './spec/footprints/shared_examples/assigned_craftsman_record_examples'
 
 describe MemoryRepository::AssignedCraftsmanRecordRepository do

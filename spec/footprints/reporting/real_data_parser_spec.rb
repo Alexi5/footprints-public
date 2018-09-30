@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/reporting/real_data_parser'
+require 'reporting/real_data_parser'
 
 describe RealDataParser do
   let(:now)              { Time.now.utc }

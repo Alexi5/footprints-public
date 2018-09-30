@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/ar_repository/note_repository'
+require 'ar_repository/note_repository'
 require './spec/footprints/shared_examples/note_examples'
 
 describe ArRepository::NoteRepository do

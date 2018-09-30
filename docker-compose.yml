@@ -1,0 +1,30 @@
+version: '3'
+services:
+
+  ruby:
+    build:
+      context: .
+      dockerfile: ./docker/ruby/Dockerfile
+    environment:
+      DATABASE_URL: mysql2://root:password@mysql/footprints
+      MYSQL_HOST: mysql # Sets default host for mysql-client CLI
+      MYSQL_PWD: password # Sets default password for mysql-client CLI
+      RAILS_ENV: development
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+    # Allow support for irb, pry, etc
+    stdin_open: true
+    tty: true
+
+  mysql:
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3306:3306"

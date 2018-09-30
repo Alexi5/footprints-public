@@ -1,4 +1,4 @@
-require './lib/repository'
+require 'repository'
 require 'highrise'
 module Interactor
   class HighrisePuller

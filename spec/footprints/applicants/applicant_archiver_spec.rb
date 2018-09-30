@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/applicants/applicant_archiver'
+require 'applicants/applicant_archiver'
 
 describe Footprints::ApplicantArchiver do
 

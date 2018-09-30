@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/applicants/applicant_interactor.rb'
+require 'applicants/applicant_interactor.rb'
 
 describe ApplicantInteractor do
   let!(:craftsman) { Footprints::Repository.craftsman.create(:name => "A Craftsman", :employment_id => "007", :email => "acraftsman@example.com") }

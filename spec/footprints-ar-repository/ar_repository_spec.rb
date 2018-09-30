@@ -1,5 +1,5 @@
 require "spec_helper"
-require "./lib/ar_repository/ar_repository"
+require "ar_repository/ar_repository"
 
 describe ArRepository do
   it "has an applicant repo" do

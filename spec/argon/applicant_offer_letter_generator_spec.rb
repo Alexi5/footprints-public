@@ -1,6 +1,6 @@
 # encoding: utf-8
 require 'spec_helper'
-require './lib/argon/applicant_offer_letter_generator.rb'
+require 'argon/applicant_offer_letter_generator.rb'
 
 describe ApplicantOfferLetterGenerator do
   let!(:craftsman) { Footprints::Repository.craftsman.create(:name => "A Craftsman", :employment_id => "007") }

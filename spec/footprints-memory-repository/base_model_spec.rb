@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/memory_repository/models/base'
+require 'memory_repository/models/base'
 
 class TestBaseModel < MemoryRepository::Base
   data_attributes :name, :hired, :email

@@ -1,7 +1,7 @@
-require './lib/repository'
-require './lib/craftsmen/craftsmen_interactor'
-require './lib/craftsmen/craftsmen_presenter'
-require './lib/craftsmen/skills'
+require 'repository'
+require 'craftsmen/craftsmen_interactor'
+require 'craftsmen/craftsmen_presenter'
+require 'craftsmen/skills'
 
 class CraftsmenController < ApplicationController
   before_filter :authenticate, :employee?

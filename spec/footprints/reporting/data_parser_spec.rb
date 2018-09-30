@@ -1,6 +1,6 @@
 require 'spec_helper'
-require './lib/reporting/data_parser'
-require './lib/warehouse/fake_api'
+require 'reporting/data_parser'
+require 'warehouse/fake_api'
 
 describe DataParser do
   let(:now)              { Time.now.utc }

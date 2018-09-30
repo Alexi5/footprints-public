@@ -1,4 +1,4 @@
-require './lib/notes/note_presenter'
+require 'notes/note_presenter'
 
 class NotesPresenter
   def initialize(notes)

@@ -1,8 +1,8 @@
 require 'spec_helper'
-require './lib/memory_repository/applicant_repository'
-require './lib/memory_repository/craftsman_repository'
-require './lib/memory_repository/user_repository'
-require './lib/memory_repository/message_repository'
+require 'memory_repository/applicant_repository'
+require 'memory_repository/craftsman_repository'
+require 'memory_repository/user_repository'
+require 'memory_repository/message_repository'
 
 describe MemoryRepository do
   it "has an applicant repo" do
