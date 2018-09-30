@@ -3,7 +3,7 @@ development:
   config: utf8
   host: mysql
   database: footprints
-  user: root
+  username: root
   password: password
   url: mysql2://root:password@mysql/footprints
 
