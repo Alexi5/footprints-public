@@ -1,7 +1,7 @@
 # set path to application
-app_dir = File.expand_path("../..", __FILE__)
-shared_dir = "#{app_dir}/tmp"
-log_dir = "#{app_dir}/log"
+app_dir = File.expand_path("../../..", __FILE__)
+shared_dir = "#{app_dir}/current/tmp"
+log_dir = "#{app_dir}/current/log"
 working_directory app_dir
 
 
@@ -22,7 +22,7 @@ pid "#{shared_dir}/pids/unicorn.pid"
 
 # use correct Gemfile on restarts
 before_exec do |server|
-  ENV['BUNDLE_GEMFILE'] = "#{app_path}/Gemfile"
+  ENV['BUNDLE_GEMFILE'] = "#{app_dir}/current/Gemfile"
 end
 
 before_fork do |server, worker|
