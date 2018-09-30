@@ -1,4 +1,4 @@
-require './lib/repository'
+require 'repository'
 
 namespace :db do
   desc "Destroys all Craftsmen Records for Staging"

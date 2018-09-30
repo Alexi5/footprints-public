@@ -1,5 +1,5 @@
-require './lib/warehouse/api_factory'
-require './lib/warehouse/fake_api'
+require 'warehouse/api_factory'
+require 'warehouse/fake_api'
 require 'warehouse/json_api'
 
 if Rails.env.local?

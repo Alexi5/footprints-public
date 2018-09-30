@@ -1,4 +1,4 @@
-require './lib/applicants/applicant_presenter'
+require 'applicants/applicant_presenter'
 
 class NotificationMailer < ActionMailer::Base
   default :from => "noreply@abcinc.com"

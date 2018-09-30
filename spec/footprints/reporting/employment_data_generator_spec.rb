@@ -1,6 +1,6 @@
-require './lib/reporting/employment_data_generator'
-require './lib/reporting/data_parser'
-require './lib/warehouse/fake_api'
+require 'reporting/employment_data_generator'
+require 'reporting/data_parser'
+require 'warehouse/fake_api'
 
 describe EmploymentDataGenerator do
   let(:employment_data)  {

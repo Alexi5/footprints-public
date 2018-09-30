@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/memory_repository/applicant_repository'
+require 'memory_repository/applicant_repository'
 require './spec/footprints/shared_examples/craftsman_examples'
 
 describe MemoryRepository::CraftsmanRepository do

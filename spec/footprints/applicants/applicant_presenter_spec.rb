@@ -1,5 +1,5 @@
 require 'spec_helper'
-require "./lib/applicants/applicant_presenter"
+require "applicants/applicant_presenter"
 require 'date'
 
 describe ApplicantPresenter do 

@@ -1,4 +1,4 @@
-require './lib/ar_repository/models/user'
+require 'ar_repository/models/user'
 
 Footprints::Application.routes.draw do
 

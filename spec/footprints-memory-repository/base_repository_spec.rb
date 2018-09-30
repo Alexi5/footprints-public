@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/memory_repository/base_repository'
+require 'memory_repository/base_repository'
 require 'ostruct'
 
 describe MemoryRepository do

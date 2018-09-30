@@ -1,5 +1,5 @@
 require "./app/validators/url_validator"
-require "./lib/argon/applicant_offer_letter_generator"
+require "argon/applicant_offer_letter_generator"
 
 class ApplicantProfilePresenter
   include ApplicantsHelper

@@ -1,6 +1,6 @@
 require 'spec_helpers/craftsman_factory'
 
-require './lib/craftsmen/craftsmen_interactor'
+require 'craftsmen/craftsmen_interactor'
 
 describe CraftsmenInteractor do
   let(:craftsman) { SpecHelpers::CraftsmanFactory.new.create }

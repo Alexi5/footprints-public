@@ -1,6 +1,6 @@
 require 'spec_helper'
-require './lib/warehouse/fake_api'
-require './lib/reporting/reporting_interactor'
+require 'warehouse/fake_api'
+require 'reporting/reporting_interactor'
 require 'warehouse/json_api'
 
 describe ReportingInteractor do

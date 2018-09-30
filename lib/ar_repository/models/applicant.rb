@@ -1,4 +1,4 @@
-require './lib/repository'
+require 'repository'
 require './app/helpers/applicants_helper'
 require './app/validators/date_validator'
 require './app/validators/url_validator'

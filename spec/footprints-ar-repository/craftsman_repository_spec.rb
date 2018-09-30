@@ -1,5 +1,5 @@
 require 'spec_helper'
-require "./lib/ar_repository/craftsman_repository"
+require "ar_repository/craftsman_repository"
 require "./spec/footprints/shared_examples/craftsman_examples.rb"
 
 describe ArRepository::CraftsmanRepository do

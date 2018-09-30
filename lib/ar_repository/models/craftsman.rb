@@ -1,5 +1,5 @@
-require './lib/repository'
-require './lib/craftsmen/skills'
+require 'repository'
+require 'craftsmen/skills'
 
 class Craftsman < ActiveRecord::Base
   include ActiveModel::Validations

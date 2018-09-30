@@ -1,6 +1,6 @@
 require 'spec_helper'
-require "./lib/applicants/applicant_profile_presenter"
-require "./lib/argon/applicant_offer_letter_generator"
+require "applicants/applicant_profile_presenter"
+require "argon/applicant_offer_letter_generator"
 
 describe ApplicantProfilePresenter do
   let(:applicant) do

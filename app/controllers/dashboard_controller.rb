@@ -1,5 +1,5 @@
-require './lib/applicants/applicant_index_presenter'
-require './lib/dashboard/dashboard_interactor'
+require 'applicants/applicant_index_presenter'
+require 'dashboard/dashboard_interactor'
 
 class DashboardController < ApplicationController
   before_filter :authenticate, :employee?
