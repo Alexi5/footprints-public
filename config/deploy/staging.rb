@@ -13,6 +13,14 @@ server "#{ENV['CAPISTRANO_SERVER']}",
     keys: "#{ENV['CAPISTRANO_DEPLOY_PATH_TO_SSH_KEY']}"
   }
 
+# Deploy the "develop" branch to the staging environment
+set :branch, "develop"
+
+# Set the :deploy_to filepath to point to the folder for the staging app
+set :deploy_to, "#{ENV['CAPISTRANO_STAGING_DEPLOY_TO']}"
+
+# App running in staging environment should use the "production" environment config
+set :rails_env, "production"
 
 # role-based syntax
 # ==================
@@ -35,8 +43,6 @@ server "#{ENV['CAPISTRANO_SERVER']}",
 # For available Capistrano configuration variables see the documentation page.
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
-set :branch, "develop"
-set :deploy_to, "#{ENV['CAPISTRANO_STAGING_DEPLOY_TO']}"
 
 
 
