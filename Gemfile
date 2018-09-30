@@ -38,6 +38,7 @@ group :test, :development do
   gem "capistrano", :require => false
   gem "capistrano-rails", "~> 1.4", require: false
   gem "capistrano-rvm", require: false
+  gem 'capistrano3-unicorn', require: false
 end
 
 gem 'simplecov', :require => false, :group => :test

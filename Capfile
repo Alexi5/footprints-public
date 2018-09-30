@@ -41,6 +41,9 @@ require "capistrano/rvm"
 require "capistrano/bundler"
 require "capistrano/rails/assets"
 
+# Include Unicorn tasks to restart server
+require 'capistrano3/unicorn'
+
 # Only include the Rails migrations tasks if the env var RUN_MIGRATIONS is truthy
 # @see https://capistranorb.com/documentation/tasks/rails/ for usage instructions
 require "capistrano/rails/migrations" if ENV['RUN_MIGRATIONS']
