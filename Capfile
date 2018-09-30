@@ -40,6 +40,9 @@ require "capistrano/rvm"
 # Include Rails-specific tasks
 require "capistrano/bundler"
 require "capistrano/rails/assets"
+
+# Only include the Rails migrations tasks if the env var RUN_MIGRATIONS is truthy
+# @see https://capistranorb.com/documentation/tasks/rails/ for usage instructions
 require "capistrano/rails/migrations" if ENV['RUN_MIGRATIONS']
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
