@@ -2,7 +2,7 @@
 app_dir = File.expand_path("../../..", __FILE__)
 shared_dir = "#{app_dir}/current/tmp"
 log_dir = "#{app_dir}/current/log"
-working_directory app_dir
+working_directory "#{app_dir}/current"
 
 
 # Set unicorn options
