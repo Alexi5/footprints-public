@@ -1,4 +1,4 @@
-require './lib/reminder/reminder.rb'
+require 'reminder/reminder.rb'
 require 'spec_helper'
 require 'spec_helpers/applicant_factory'
 require 'spec_helpers/craftsman_factory'

@@ -1,4 +1,4 @@
-require './lib/craftsmen/skills'
+require 'craftsmen/skills'
 
 class CraftsmenPresenter
   def initialize(craftsmen)

@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/applicants/eighthlight_applicants_interactor'
+require 'applicants/eighthlight_applicants_interactor'
 
 describe EighthlightApplicantsInteractor do
   let(:repo)   { Footprints::Repository }

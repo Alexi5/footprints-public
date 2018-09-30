@@ -1,5 +1,5 @@
 require "spec_helper"
-require './lib/argon/offer_letter_post.rb'
+require 'argon/offer_letter_post.rb'
 
 describe OfferLetterPost do
   it "gets a PDF from Argon" do

@@ -1,6 +1,6 @@
 require 'memory_repository/models/craftsman'
 require 'memory_repository/base_repository'
-require './lib/repository'
+require 'repository'
 
 module MemoryRepository
   class CraftsmanRepository

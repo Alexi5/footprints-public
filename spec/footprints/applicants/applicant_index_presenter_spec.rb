@@ -1,5 +1,5 @@
 require "spec_helper"
-require "./lib/applicants/applicant_index_presenter"
+require "applicants/applicant_index_presenter"
 
 describe ApplicantIndexPresenter do
 

@@ -1,5 +1,5 @@
 require "spec_helper"
-require './lib/notes/note_presenter'
+require 'notes/note_presenter'
 
 describe NotePresenter do
   let(:given_time) { DateTime.parse("01 Jan 2000 12:00:00 -6") }

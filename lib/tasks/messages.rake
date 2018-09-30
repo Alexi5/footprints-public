@@ -1,5 +1,5 @@
-require './lib/highrise/highrise_puller_interactor'
-require './lib/repository'
+require 'highrise/highrise_puller_interactor'
+require 'repository'
 
 namespace :db do
   desc "Destroys all messages"

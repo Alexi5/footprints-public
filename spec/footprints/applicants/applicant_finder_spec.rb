@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/applicants/applicant_finder'
+require 'applicants/applicant_finder'
 
 module Footprints
   describe ApplicantFinder do

@@ -1,4 +1,4 @@
-require './lib/warehouse/fake_api'
+require 'warehouse/fake_api'
 require 'warehouse/json_api'
 
 module Warehouse

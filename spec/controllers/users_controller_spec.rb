@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/memory_repository/models/user'
+require 'memory_repository/models/user'
 
 describe UsersController do
   before(:each) do

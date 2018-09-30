@@ -1,6 +1,6 @@
 # encoding: utf-8
 require 'spec_helper'
-require './lib/salaries/salary_presenter'
+require 'salaries/salary_presenter'
 
 describe SalaryPresenter do
   Salary = Struct.new(:id, :duration, :location, :amount)

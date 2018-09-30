@@ -1,4 +1,4 @@
-require './lib/repository'
+require 'repository'
 
 class AnnualStartingCraftsmanSalary < ActiveRecord::Base
 

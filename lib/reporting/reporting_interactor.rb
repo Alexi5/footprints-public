@@ -1,10 +1,10 @@
 require 'warehouse/json_api'
 require 'warehouse/token_http_client'
-require './lib/reporting/data_parser'
-require './lib/reporting/real_data_parser'
-require './lib/reporting/real_employment_data_generator'
-require './lib/warehouse/api_factory'
-require './lib/warehouse/fake_api'
+require 'reporting/data_parser'
+require 'reporting/real_data_parser'
+require 'reporting/real_employment_data_generator'
+require 'warehouse/api_factory'
+require 'warehouse/fake_api'
 require 'repository'
 
 class ReportingInteractor

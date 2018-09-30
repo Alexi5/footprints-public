@@ -1,5 +1,5 @@
-require './lib/repository'
-require './lib/applicants/applicant_archiver'
+require 'repository'
+require 'applicants/applicant_archiver'
 
 namespace :db do
   desc "Destroys Everything from Databases"

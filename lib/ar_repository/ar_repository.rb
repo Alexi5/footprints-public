@@ -6,7 +6,7 @@ dbconfig = YAML.safe_load(File.open(db_yaml))
 
 ActiveRecord::Base.establish_connection(dbconfig[Rails.env])
 
-require './lib/repository'
+require 'repository'
 require 'ar_repository/applicant_repository'
 require 'ar_repository/craftsman_repository'
 require 'ar_repository/apprentice_repository'

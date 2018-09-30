@@ -1,6 +1,6 @@
-require './lib/salaries/salary_presenter'
-require './lib/salaries/salary_updater'
-require './lib/repository'
+require 'salaries/salary_presenter'
+require 'salaries/salary_updater'
+require 'repository'
 
 class SalariesController < ApplicationController
   before_filter :authenticate, :employee?

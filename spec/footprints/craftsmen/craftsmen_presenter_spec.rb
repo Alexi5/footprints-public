@@ -1,6 +1,6 @@
 require "spec_helper"
-require "./lib/craftsmen/craftsmen_presenter"
-require './lib/craftsmen/skills'
+require "craftsmen/craftsmen_presenter"
+require 'craftsmen/skills'
 
 describe CraftsmenPresenter do
   before :each do
