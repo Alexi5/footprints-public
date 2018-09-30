@@ -28,6 +28,7 @@ GEM
       activesupport (= 4.0.2)
       arel (~> 4.0.0)
     activerecord-deprecated_finders (1.0.4)
+    activerecord-native_db_types_override (0.3.0)
     activeresource (4.1.0)
       activemodel (~> 4.0)
       activesupport (~> 4.0)
@@ -232,6 +233,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-native_db_types_override
   american_date
   awesome_print
   better_errors (= 1.1.0)

@@ -19,6 +19,7 @@ gem "edn", '~> 1.0.2'
 gem "httparty", '~> 0.13.0'
 gem "american_date"
 gem 'mysql2', '~> 0.3.18'
+gem 'activerecord-native_db_types_override'
 
 gem 'stockroom', git: 'https://github.com/ryanzverner/stockroom-ruby-client.git'
 
