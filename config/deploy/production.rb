@@ -6,7 +6,12 @@
 # server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
-
+server "#{ENV['CAPISTRANO_SERVER']}",
+  user: "#{ENV['CAPISTRANO_DEPLOY_USER']}",
+  roles: %w{app db web},
+  ssh_options: {
+    keys: "#{ENV['CAPISTRANO_DEPLOY_PATH_TO_SSH_KEY']}"
+  }
 
 
 # role-based syntax

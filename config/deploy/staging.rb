@@ -6,7 +6,12 @@
 # server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
-
+server "#{ENV['CAPISTRANO_SERVER']}",
+  user: "#{ENV['CAPISTRANO_DEPLOY_USER']}",
+  roles: %w{app db web},
+  ssh_options: {
+    keys: "#{ENV['CAPISTRANO_DEPLOY_PATH_TO_SSH_KEY']}"
+  }
 
 
 # role-based syntax
@@ -30,6 +35,8 @@
 # For available Capistrano configuration variables see the documentation page.
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
+set :branch, "develop"
+set :deploy_to, "#{ENV['CAPISTRANO_STAGING_DEPLOY_TO']}"
 
 
 
