@@ -2,7 +2,7 @@ require 'warehouse/spec_helpers/employment_factory'
 require 'spec_helper'
 require 'apprentices/apprentices_interactor'
 
-describe ApprenticesInteractor do 
+describe ApprenticesInteractor do
   let(:mike) { Warehouse::SpecHelpers.create_employment({:id => 5, :first_name => "Mike",
                                                          :last_name => "Halpert",
                                                          :email => "jhalpert@dundermiffline.com",
@@ -24,7 +24,7 @@ describe ApprenticesInteractor do
                                                           :end => 1.day.ago,
                                                           :position_name => "Software Resident"})}
 
-  let(:bob_resident) { Warehouse::SpecHelpers.create_employment({:id=> 5, :first_name => "bob",            
+  let(:bob_resident) { Warehouse::SpecHelpers.create_employment({:id=> 5, :first_name => "bob",
                                                                 :last_name => "Halpert",
                                                                 :email => "jhalpert@dundermiffline.com",
                                                                 :start => 4.days.ago,
@@ -108,4 +108,5 @@ describe ApprenticesInteractor do
       expect(interactor.fetch_corresponding_craftsman_employment(bob_resident)).to eq(bob_craft)
     end
   end
+
 end
