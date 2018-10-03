@@ -18,7 +18,7 @@ stderr_path "#{log_dir}/unicorn.stderr.log"
 stdout_path "#{log_dir}/unicorn.stdout.log"
 
 # Set master PID location
-pid "#{shared_dir}/pids/unicorn.pid"
+pid "#{shared_dir}/pids/production_unicorn.pid"
 
 # use correct Gemfile on restarts
 before_exec do |server|
