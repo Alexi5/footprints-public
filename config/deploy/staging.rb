@@ -13,9 +13,6 @@ server "#{ENV['CAPISTRANO_SERVER']}",
     keys: "#{ENV['CAPISTRANO_DEPLOY_PATH_TO_SSH_KEY']}"
   }
 
-# Deploy the "develop" branch to the staging environment
-set :branch, "develop"
-
 # Set the :deploy_to filepath to point to the folder for the staging app
 set :deploy_to, "#{ENV['CAPISTRANO_STAGING_DEPLOY_TO']}"
 
