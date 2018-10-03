@@ -8,6 +8,10 @@
 # CAPISTRANO_PRODUCTION_DEPLOY_TO
 
 language: ruby
+cache:
+  bundler: true
+  directories:
+    - /home/travis/.rvm
 rvm:
 - 2.1.5
 before_script:
