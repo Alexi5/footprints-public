@@ -1,5 +1,7 @@
 .DS_Store
-tmp/
+tmp/cache/
+tmp/sessions/
+tmp/sockets/
 log/
 *.swp
 *.swo
