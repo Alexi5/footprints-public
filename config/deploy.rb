@@ -31,7 +31,7 @@ append :linked_files, "config/database.yml"
 append :linked_files, "config/mailer.yml"
 
 # Default value for linked_dirs is []
-append :linked_dirs, "log", "tmp/cache", "public/system"
+append :linked_dirs, "log", "tmp/pids", "tmp/sockets", "tmp/cache", "public/system"
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
