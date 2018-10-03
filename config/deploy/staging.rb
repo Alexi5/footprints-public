@@ -16,6 +16,8 @@ server "#{ENV['CAPISTRANO_SERVER']}",
 # App running in staging environment should use the "staging" environment config
 set :rails_env, "staging"
 
+set :unicorn_pid, File.join(current_path, "tmp", "pids", "unicorn_staging.pid")
+
 # role-based syntax
 # ==================
 
