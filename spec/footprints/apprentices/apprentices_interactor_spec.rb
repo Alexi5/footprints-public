@@ -2,7 +2,7 @@ require 'warehouse/spec_helpers/employment_factory'
 require 'spec_helper'
 require 'apprentices/apprentices_interactor'
 
-describe ApprenticesInteractor do
+describe ApprenticesInteractor do 
   let(:mike) { Warehouse::SpecHelpers.create_employment({:id => 5, :first_name => "Mike",
                                                          :last_name => "Halpert",
                                                          :email => "jhalpert@dundermiffline.com",
@@ -24,7 +24,7 @@ describe ApprenticesInteractor do
                                                           :end => 1.day.ago,
                                                           :position_name => "Software Resident"})}
 
-  let(:bob_resident) { Warehouse::SpecHelpers.create_employment({:id=> 5, :first_name => "bob",
+  let(:bob_resident) { Warehouse::SpecHelpers.create_employment({:id=> 5, :first_name => "bob",            
                                                                 :last_name => "Halpert",
                                                                 :email => "jhalpert@dundermiffline.com",
                                                                 :start => 4.days.ago,
@@ -52,12 +52,12 @@ describe ApprenticesInteractor do
     allow_any_instance_of(Warehouse::FakeAPI).to receive(:find_all_employments).and_return(employment_data)
   end
 
-  # context '#fetch_all_residents' do
-  #   it 'fetches all residents' do
-  #     expect_any_instance_of(Warehouse::FakeAPI).to receive(:find_all_employments).and_return([mike, sarah])
-  #     #expect(interactor.fetch_all_residents).to eq([mike])
-  #   end
-  # end
+  context '#fetch_all_residents' do
+    it 'fetches all residents' do
+      expect_any_instance_of(Warehouse::FakeAPI).to receive(:find_all_employments).and_return([mike, sarah])
+      expect(interactor.fetch_all_residents).to eq([mike])
+    end
+  end
 
   context '#fetch_all_students' do
     it 'fetches all current students' do
@@ -91,10 +91,10 @@ describe ApprenticesInteractor do
   end
 
   context '#fetch_resident_by_employment_id' do
-    # it 'returns an employment if it is a valid resident' do
-    #   allow_any_instance_of(Warehouse::FakeAPI).to receive(:find_employment_by_id).with(1).and_return(mike)
-    #   #expect(interactor.fetch_resident_by_id(1)).to eq(mike)
-    # end
+    it 'returns an employment if it is a valid resident' do
+      allow_any_instance_of(Warehouse::FakeAPI).to receive(:find_employment_by_id).with(1).and_return(mike)
+      expect(interactor.fetch_resident_by_id(1)).to eq(mike)
+    end
 
     it 'does not return an employment if it is not a valid resident' do
       allow_any_instance_of(Warehouse::FakeAPI).to receive(:find_employment_by_id).with(1).and_return(frank)
