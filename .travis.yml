@@ -8,6 +8,10 @@
 # CAPISTRANO_PRODUCTION_DEPLOY_TO
 
 language: ruby
+cache:
+  bundler: true
+  directories:
+    - /home/travis/.rvm
 rvm:
 - 2.1.5
 before_script:
@@ -17,15 +21,8 @@ before_script:
 script: bundle exec rake
 after_success:
   - "[[ $TRAVIS_BRANCH = 'master' || $TRAVIS_BRANCH = 'develop' ]] && openssl aes-256-cbc -k $DEPLOY_KEY -in config/deploy_id_rsa_enc_travis -out config/deploy_id_rsa -d -a"
-deploy:
-  - provider: script
-    script: bash bundle exec cap staging deploy
-    on:
-      branch: develop
-  - provider: script
-    script: bash bundle exec cap production deploy
-    on:
-      branch: master
+  - "[[ $TRAVIS_BRANCH = 'master' ]] && bundle exec cap production deploy"
+  - "[[ $TRAVIS_BRANCH = 'develop' ]] && bundle exec cap staging deploy"
 env:
   global:
   - secure:  Q0nhdXwDBW3WXI0MjnjYBflOKjxDsSSgijD7G67rZSNgcT68g8WGRa1nMx1TBjVTwuAy3heqVZlUlu9eri6ypnyi18YVY0cB6R6gY4BjOOcv15QkFPzY1Xtv1BM0FkVtCU4/Q7APWdgmXCQ75dYWP6uSs5COadxRoh3cLunsjPiYD7T3HV+zn7Fr3fZn940BcS7Hre0G1Hf64No6SV5duB8bJ9f4fTHYUCmikIw84rM9Prz7AUZJA4NTCKas2V5MSR6yO3IJLfaPv65hE1VLWlwdrPoyP+odbTrOs4FC7XSiuw1Zf2jgUnk4LEeRQKwO6mjG0FSWm9nn3cTqmOgkBN9748Nm2tTJPXAL3tszC6BQARdDzmxiZ/FHjspTYe4W4o3CJqQI1rW+zwjBn6mGwfnrQp4Kh0TSxGGptbqb5hNrcGacy13FQWx767aYGpf+MQzgujy8UIBKl0+bYegx2aMMTyiGlif8vYBzk9tuUYhKdViyJ0fTiOR/v9Ic8QmoelySStwKwP/R8s4hMVQBtSL+z9XHWnB6p16sZ/EMOTWVBpxMOxlahovn+1iDUjG1e5Y07fLb/AeuvHqqUTuaoOFFq07i5g7RJDtDvvn6BUVC5nNy9aY4bOdLrQKbsUU9rczi5PUhu7Q+qBa5EZ7xUo6/GMYj19Fkn0F7l7Dym+c=

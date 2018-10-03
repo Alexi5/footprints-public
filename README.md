@@ -78,3 +78,35 @@ You should now be able to access the DB!
 
 ### Trello
 https://trello.com/b/GuywdyDX/footprints
+
+### Running Capistrano deploy commands
+
+Footprints is deployed using Capistrano. Generally speaking, deploying the app
+should be limited to an automated task run by our CI/CD pipeline, but there may
+be scenarios where it is useful to run a deploy from your local environment.
+
+To deploy, take the following steps:
+
+1. Copy `.cap_env.example` to `.cap_env`
+
+```bash
+cp .cap_env.example .cap_env
+```
+
+2. Edit `.cap_env` and update the env var definitions to be correct for the deploy target (the correct values may change as we refine our provisioning scripts)
+
+```bash
+vim .cap_env
+```
+
+3. Set the environment variables from `.cap_env` in your shell
+
+```bash
+source .cap_env
+```
+
+4. Run the desired Capistrano commands
+
+```bash
+cap staging deploy
+```
