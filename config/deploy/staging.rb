@@ -13,11 +13,8 @@ server "#{ENV['CAPISTRANO_SERVER']}",
     keys: "#{ENV['CAPISTRANO_DEPLOY_PATH_TO_SSH_KEY']}"
   }
 
-# Set the :deploy_to filepath to point to the folder for the staging app
-set :deploy_to, "#{ENV['CAPISTRANO_STAGING_DEPLOY_TO']}"
-
-# App running in staging environment should use the "production" environment config
-set :rails_env, "production"
+# App running in staging environment should use the "staging" environment config
+set :rails_env, "staging"
 
 # role-based syntax
 # ==================

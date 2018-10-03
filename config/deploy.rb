@@ -10,7 +10,7 @@ set :branch, "master"
 
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, "/var/www/my_app_name"
-set :deploy_to, "#{ENV['CAPISTRANO_PRODUCTION_DEPLOY_TO']}"
+set :deploy_to, "#{ENV['CAPISTRANO_STAGING_DEPLOY_TO']}"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
