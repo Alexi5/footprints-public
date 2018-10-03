@@ -6,7 +6,7 @@ describe ApprenticesInteractor do
   let(:mike) { Warehouse::SpecHelpers.create_employment({:id => 5, :first_name => "Mike",
                                                          :last_name => "Halpert",
                                                          :email => "jhalpert@dundermiffline.com",
-                                                         :start => Date.today,
+                                                         :start => Date.current,
                                                          :end => Date.tomorrow,
                                                          :position_name => "Software Resident"})}
 
