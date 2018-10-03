@@ -23,6 +23,3 @@ CAPISTRANO_DEPLOY_PATH_TO_SSH_KEY=/path/to/ssh/key
 
 # Path to staging destination on target machine
 CAPISTRANO_STAGING_DEPLOY_TO=/var/www/some/staging/filepath
-
-# Path to production destination on target machine
-CAPISTRANO_PRODUCTION_DEPLOY_TO=/var/www/some/production/filepath
