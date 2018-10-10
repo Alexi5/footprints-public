@@ -13,11 +13,6 @@ server "#{ENV['CAPISTRANO_SERVER']}",
     keys: "#{ENV['CAPISTRANO_DEPLOY_PATH_TO_SSH_KEY']}"
   }
 
-# App running in staging environment should use the "staging" environment config
-set :rails_env, "staging"
-
-set :unicorn_pid, File.join(ENV['CAPISTRANO_STAGING_DEPLOY_TO'], "current", "tmp", "pids", "staging_unicorn.pid")
-
 # role-based syntax
 # ==================
 
