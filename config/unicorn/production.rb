@@ -11,14 +11,14 @@ preload_app true
 timeout 30
 
 # Set up socket location
-listen "#{shared_dir}/sockets/production_unicorn.sock", :backlog => 64
+listen "#{shared_dir}/sockets/unicorn.sock", :backlog => 64
 
 # Logging
 stderr_path "#{log_dir}/unicorn.stderr.log"
 stdout_path "#{log_dir}/unicorn.stdout.log"
 
 # Set master PID location
-pid "#{shared_dir}/pids/production_unicorn.pid"
+pid "#{shared_dir}/pids/unicorn.pid"
 
 # use correct Gemfile on restarts
 before_exec do |server|
