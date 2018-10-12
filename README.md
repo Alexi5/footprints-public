@@ -93,5 +93,11 @@ source .cap_env
 4. Run the desired Capistrano commands
 
 ```bash
-cap staging deploy
+cap production deploy
+```
+
+5. To run the deploy command AND include migrating the DB, include the `RUN_MIGRATIONS` env var
+
+```bash
+RUN_MIGRATIONS=1 cap production deploy
 ```
