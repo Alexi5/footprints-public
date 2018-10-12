@@ -33,9 +33,11 @@ Using Docker to run Footprints will allow you to avoid the annoying step of
 managing multiple versions of Ruby on your host OS, and will hopefully also
 make it easier to run on a non-Mac environment.
 
-1. [Install the appropriate version of Docker](https://www.docker.com/get-started) for your host OS
+1. To begin, install the latest Docker: [Install the appropriate version of Docker](https://www.docker.com/get-started) for your host OS
 
-2. Once your local Docker agent is running, [use Docker Compose](https://docs.docker.com/compose/) to bring up the Rails environment:
+2. Next, configure Docker for Mac or Docker Machine 
+### Docker for Mac Instructions
+Once your local Docker agent is running, [use Docker Compose](https://docs.docker.com/compose/) to bring up the Rails environment:
 
 ```bash
 cd /path/to/footprints-public
@@ -44,6 +46,25 @@ docker-compose up
 ``` 
 
 This step should run the Rails application, **which may fail if you have not run the migrations yet**. Browse to [http://localhost:3000](http://localhost:3000) and you should see a web application running.
+
+### Docker-Machine Instructions
+Install docker-machine-nfs to use:
+```bash
+	brew install docker-machine-nfs
+```
+
+Set up your docker machine to run under NFS:
+```bash
+	docker-machine-nfs default -f --shared-folder=/[Path to footprints]/footprints-public --mount-opts="async,noatime,actimeo=1,nolock,vers=3,udp"
+```
+
+To run the rails application, find the Docker Machine ip address and use it to access the web application
+
+```bash
+	docker-machine ip
+```
+
+Visit `http://[Docker Ip address]:3000`
 
 3. To manage gems, or run Rails, Bundler, or Rake commands, you will want to do that from inside of the running Ruby container:
 
