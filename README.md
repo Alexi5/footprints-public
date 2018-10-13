@@ -57,6 +57,22 @@ docker-compose exec ruby bash
 
 5. To bring the application back down, run `docker-compose down`
 
+## Running Footprints using Docker Machine
+
+If you are running Docker Machine instead of Docker for Mac, it may be necesssary
+to manually define an NFS volume mount using `docker-machine-nfs`. This is more
+likely to be the case if you are an ActiveCampaign employee.
+
+You will know that this step is necessary if you see an error stating that an
+OCI runtime error has occurred due to a file not existing, most likely the file
+`/app/docker-entry.sh`.
+
+```bash
+cd /path/to/footprints-public
+
+docker-machine-nfs default -f --shared-folder=$(pwd) --mount-opts="async,noatime,actimeo=1,nolock,vers=3,udp"
+```
+
 #### Note
 
 Footprints requires anybody who logs in to also be a crafter. You will have to manually add a person to the system as a crafter in order to log into Footprints.
