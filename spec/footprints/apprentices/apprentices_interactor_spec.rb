@@ -1,4 +1,5 @@
 require 'warehouse/spec_helpers/employment_factory'
+require 'warehouse/fake_api'
 require 'spec_helper'
 require 'apprentices/apprentices_interactor'
 
@@ -20,33 +21,44 @@ describe ApprenticesInteractor do
   let(:sarah) { Warehouse::SpecHelpers.create_employment({:id => 5, :first_name => "Sarah",
                                                           :last_name => "Halpert",
                                                           :email => "jhalpert@dundermiffline.com",
-                                                          :start => 2.days.ago,
-                                                          :end => 1.day.ago,
+                                                          :start => 2.days.ago.to_date,
+                                                          :end => 1.day.ago.to_date,
                                                           :position_name => "Software Resident"})}
 
   let(:bob_resident) { Warehouse::SpecHelpers.create_employment({:id=> 5, :first_name => "bob",
                                                                 :last_name => "Halpert",
                                                                 :email => "jhalpert@dundermiffline.com",
-                                                                :start => 4.days.ago,
-                                                                :end => 3.day.ago,
+                                                                :start => 4.days.ago.to_date,
+                                                                :end => 3.day.ago.to_date,
                                                                 :p_id => 1,
                                                                 :position_name => "Software Resident"})}
 
   let(:bob_craft) { Warehouse::SpecHelpers.create_employment({:id => 6, :first_name => "bob",
                                                                    :last_name => "Halpert",
                                                                    :email => "jhalpert@dundermiffline.com",
-                                                                   :start => 2.days.ago,
-                                                                   :end => 1.day.ago,
+                                                                   :start => 2.days.ago.to_date,
+                                                                   :end => 1.day.ago.to_date,
                                                                    :p_id => 1,
                                                                    :position_name => "Software Craftsman"})}
 
+  let(:fake_warehouse) {
+    fake_client = {}
+    Warehouse::FakeAPI.new(fake_client)
+  }
 
-  let(:interactor) { ApprenticesInteractor.new('fake_auth_token') }
-  let(:employment_data)  { [
-                            { :start => Time.parse("2014-09-01"),
-                              :end => Time.parse("2015-09-30"),
-                              :position => { :name => "UX Resident" },
-                              :person_id => 33 }] }
+  let(:interactor) {
+    ApprenticesInteractor.new('fake_auth_token', fake_warehouse)
+  }
+
+  let(:employment_data) do
+    [
+      { :start => Time.parse("2014-09-01"),
+        :end => Time.parse("2015-09-30"),
+        :position => { :name => "UX Resident" },
+        :person_id => 33
+      }
+    ]
+  end
 
   before :each do
     allow_any_instance_of(Warehouse::FakeAPI).to receive(:find_all_employments).and_return(employment_data)
@@ -54,7 +66,7 @@ describe ApprenticesInteractor do
 
   context '#fetch_all_residents' do
     it 'fetches all residents' do
-      expect_any_instance_of(Warehouse::FakeAPI).to receive(:find_all_employments).and_return([mike, sarah])
+      allow_any_instance_of(Warehouse::FakeAPI).to receive(:find_all_employments).and_return([mike, sarah])
       expect(interactor.fetch_all_residents).to eq([mike])
     end
   end
@@ -63,18 +75,18 @@ describe ApprenticesInteractor do
     it 'fetches all current students' do
       old_student = {
         :skill_level => "student",
-        :start => 2.days.ago,
-        :end => 1.day.ago
+        :start => 2.days.ago.to_date,
+        :end => 1.day.ago.to_date
       }
       new_student = {
         :skill_level => "student",
-        :start => 2.days.ago,
-        :end => 2.days.from_now
+        :start => 2.days.ago.to_date,
+        :end => 2.days.from_now.to_date
       }
       new_resident = {
         :skill_level => "resident",
-        :start => 2.days.ago,
-        :end => 2.days.from_now
+        :start => 2.days.ago.to_date,
+        :end => 2.days.from_now.to_date
       }
       allow_any_instance_of(Warehouse::FakeAPI).to receive(:find_all_apprenticeships).and_return([new_student, old_student, new_resident])
 
