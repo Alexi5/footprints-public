@@ -20,4 +20,4 @@ COPY . /app
 
 ENTRYPOINT ["/app/docker-entry.sh"]
 
-CMD ["bin/rails", "s", "-p", "3000", "-b", "0.0.0.0"]
+CMD ["unicorn", "--listen", "3000"]
