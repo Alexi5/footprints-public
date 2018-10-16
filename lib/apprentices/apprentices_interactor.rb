@@ -13,8 +13,9 @@ class ApprenticesInteractor
 
   attr_reader :auth_token
 
-  def initialize(auth_token)
+  def initialize(auth_token, instance_warehouse = nil)
     @auth_token = auth_token
+    @warehouse = instance_warehouse unless instance_warehouse.nil?
   end
 
   def fetch_all_residents
@@ -82,9 +83,11 @@ class ApprenticesInteractor
   end
 
   def current?(employment)
-    employment[:start] <= Date.current && (employment[:end].nil? || employment[:end] > Date.today)
+    startdate = employment[:start] <= Date.current
+    enddate = (employment[:end].nil? || employment[:end] > Date.current)
+    startdate && enddate
   end
-  
+
   def corresponding_craftsman?(resident, employment)
     true if (resident[:person][:id] == employment[:person][:id]) && craftsman?(employment)
   end
