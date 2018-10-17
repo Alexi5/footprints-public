@@ -126,13 +126,13 @@ resource "aws_security_group" "mongeeses_web_sg" {
 }
 
 resource "aws_alb" "mongeeses_alb" {
-	name = "mongeeses-alb"
+	name = "mong2-alb"
 	subnets = ["${aws_subnet.mongeeses_subnet_1.id}", "${aws_subnet.mongeeses_subnet_2.id}"] 
 	security_groups = ["${aws_security_group.alb_sg.id}"]
 }
 
-resource "aws_alb_target_group" "mongeese_alb" {
-	name = "mongeese-alb-target"
+resource "aws_alb_target_group" "mongeeses_alb" {
+	name = "mong-alb-target"
 	vpc_id = "${aws_vpc.mongeeses_vpc.id}"
 	port = 80
 	protocol = "HTTP"
@@ -147,7 +147,7 @@ resource "aws_alb_listener" "mongeeses_alb_http" {
 	port = 80
 	protocol = "HTTP"
 	default_action {
-		target_group_arn = "${aws_alb_target_group.mongeese_alb.arn}"
+		target_group_arn = "${aws_alb_target_group.mongeeses_alb.arn}"
 		type = "forward"
 	}
 }
