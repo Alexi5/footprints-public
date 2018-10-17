@@ -20,14 +20,18 @@ before_script:
   - cp config/ci.database.yml config/database.yml
   - cp config/mailer.yml.example config/mailer.yml
 
+script: bundle exec rake
+
 jobs:
   include:
     - stage: test
-      script: bundle exec rake
     - stage: deploy
-      script:
-        - openssl aes-256-cbc -k $DEPLOY_KEY -in config/deploy_id_rsa_enc_travis -out config/deploy_id_rsa -d -a
-        - bundle exec cap production deploy
+      script: skip
+      deploy:
+        provider: script
+        script:
+          - openssl aes-256-cbc -k $DEPLOY_KEY -in config/deploy_id_rsa_enc_travis -out config/deploy_id_rsa -d -a
+          - bundle exec cap production deploy
 
 stages:
   - test
