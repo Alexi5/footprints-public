@@ -11,16 +11,26 @@ cache:
   bundler: true
   directories:
     - /home/travis/.rvm
+
 rvm:
-- 2.1.5
+  - 2.1.5
+
 before_script:
-- mysql -e 'create database footprints_test;'
-- cp config/ci.database.yml config/database.yml
-- cp config/mailer.yml.example config/mailer.yml
+  - mysql -e 'create database footprints_test;'
+  - cp config/ci.database.yml config/database.yml
+  - cp config/mailer.yml.example config/mailer.yml
+
 script: bundle exec rake
-after_success:
-  - "[[ $TRAVIS_BRANCH = 'master' && $TRAVIS_PULL_REQUEST = 'false' ]] && openssl aes-256-cbc -k $DEPLOY_KEY -in config/deploy_id_rsa_enc_travis -out config/deploy_id_rsa -d -a"
-  - "[[ $TRAVIS_BRANCH = 'master' && $TRAVIS_PULL_REQUEST = 'false' ]] && bundle exec cap staging deploy"
+
+deploy:
+  - openssl aes-256-cbc -k $DEPLOY_KEY -in config/deploy_id_rsa_enc_travis -out config/deploy_id_rsa -d -a
+  - bundle exec cap production deploy
+
+stages:
+  - name: deploy
+    if: |
+      branch IS master AND \
+      env(TRAVIS_PULL_REQUEST) IS NOT true
 
 env:
   global:
@@ -29,4 +39,3 @@ env:
   - secure: lZGr/+RGsMncmPDB4IjsKg8QctSSh2y7OjJ/Xs0DHsOmfX0BqPLedT3a//Zh+6B+uJ2PDhPRQ4qdcb58v9fX0rzzFJonqyftQuIj6vC2eHimG0MaX3OSxKZHZQ7Ylo7UBWsAAeJWQrTanihJ+RXSzIM/xi9tMjVDMQAZLbRKTL9aaCGpHzUrNKTZJndBDEiIuNgDDqeHnGkVPi9mbHF/giThK6zESniEm+FribVUdzkEuNAysZM2L7faIDNbHCv17vpnCKEwI+Bk74bKJv6PfVL/1cgpW1+sSWdtbUzxqKhlfMo/KDV+5XLM2Lrqg1e+EAauT7dcX8RiIpTouAiuBjBo8NvdV9QtBMPcO8qwwmanzoICdxImAI2rMQIMJxiyRt0U5Ucy8DLpvnwLujqlVfWXK1O0WxZDdBX30V7UKmrS5PdrScsTc13tP4ryfi80CQIqJwJF93vSYVWE4zyX2jHYN/7UCd8YZLaNcpi+tTJfoST5M4g8Jr67TUhS4sBkVNpbWgmLGbR+7Ren4K7AE//nXYYuzY57yx6cPKufckRJbKzankTH/ISjmvxHpuiYJV3SoGVHN9rVimJTa+pqXTu68AlmngKnSsrL/J6fXwGhJt3wRwKSOvnXrC70pXpOf316tBwtdSsFcBAHG8snVJuzC6wqySQWkV9ifH+55ME=
   - secure: aYx+9kQ12oC3mgJD0+UgKVk3hNAOk4U4UZ4yjcER0vDA5foyucgZFzBHTaS/JtQplUn/allEWRo3+6OUrhZzDifMCzZtLEKs2rWhBT/Qbn189E17qyz5OnuWbOgu3FHpV86yMLbLu/6zAZIDg+4uQuNnP4QD2ocQLxn/3gpC4YogcruR9EDviD7tAkz88Wb1y7Ha7rFot/qL3QL3X6nl0CmuF6hcH3AtO+lUStAvV/bQ0derEjadINtlo6+M3VL5bjzFSCQsfwbDeSNPlbK4mdTFVXd8X90yfEYEiYonNar1QKNTt5ZaJR0bl3oPngYclhBh0N9DxrR3njf0n4tnmf1kz9Qtqwo1uzX5n6/tl/JMvfFkhVQo416zf7hFudnHO2xc5MCidgnC+uJESECC+KvaUXTJRSUWYQnjKlIiEWTfxw0KBVR21kBU0Uh2AmQAo6ibOynG9RMVPzjosH9aRTNPlWW0cyL9ncBcc6T68C30AiGvJORsxQ/bFy69pLbAiNsDuNkACP+VxW6OtTk6SE4nnBETaVeWTmCKD3lEL1tGkwl9+2iquGutc9PtOX4YPPa+so+yZb+E23s2NTnX39dNAUZh0h8Soe4PqvArIEjwHJX4YQ/lG/g0bX9NGBrbtI627ICdAqJ9mWvupA4y+2R1o6XKLjnoJPErv/7Uh7o=
   - secure: Ia3ZAoFyGTS8fMEZwbUvXjeQeVyFut3PlkxtTS+XXVj9KnBK4Rb6viBWWU9Muv4pbQqcur5/HhHR7lFioXEuoUtTGkMrawFGEIP/WyeufQbiSwpF1OQyb5G2EinFctTTJhcNhHHeYVy5vwOxCpRjYwqExKS4RAKzCavOFQzINy0wDmn1LF0RXt3cA/KE0PBc5jaGaY8qRtXteAQ+Bao7S9j2K3ayzyGlU7FuQbUVP/10+1Rr7qDqdZRNTx+Yw9GY+IlAjP3IAfMyWVNcP+93aALmuYLZBhROIq64zDFHX7Lz3V6kinS8uCPQ4jUaWl9dHDry6YT6iKzzXL1pQfZdlzGrylSrkU1X+cdVEz/TienN8EBzTwPNePmVZ+NZAwGcsrgII0/PZNNJ3fdJSezfSyurHFpH9wwakVCkIhG3e/BmuHQHUfhdA0HUwMsF8yykFFUTpTWsXHqx7tlQGAxu9cpaJXNPwMnRM8aL9uKZI87BjAiZ8mlGbeNK2SvvzG8kcE0CdzjrYmZEnPEf9IQbDyGiFb7KJ4Brhur3c65bTf/Fjn87sTGJJkCAkEfn7dc2e00alqGg+U3A5TZJ5Z1NcjcPkufOV5+ukdZ7rT8u0JNeui4pxvZ2LnY2Lp96euFBB+cjcMLgRvdwP3cCWkdyjLkaR6jpz6LhGXQomGZfmok=
-
