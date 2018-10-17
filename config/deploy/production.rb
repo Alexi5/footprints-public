@@ -6,7 +6,11 @@
 # server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
-server "#{ENV['CAPISTRANO_SERVER']}",
+client = BlueGreenIpClient.new
+
+ips = client.get_ips
+
+server "#{ips[:inactive_ip]}",
   user: "#{ENV['CAPISTRANO_DEPLOY_USER']}",
   roles: %w{app db web},
   ssh_options: {

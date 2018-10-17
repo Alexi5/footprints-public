@@ -12,9 +12,6 @@ set -o allexport
 # $> vim .cap_env # Set the correct values for your local machine
 # $> source .cap_env # Load the environment vars into your shell session
 
-# IP address or hostname to deploy to
-CAPISTRANO_SERVER=some.server-address-here.com
-
 # User with deploy privileges on target machine
 CAPISTRANO_DEPLOY_USER=somedeployuser
 
