@@ -16,10 +16,10 @@ gem "highrise", '~> 3.1.5'
 gem "mail", '~> 2.5.4'
 gem "omniauth-google-oauth2", '~> 0.2.2'
 gem "edn", '~> 1.0.2'
-gem "httparty", '~> 0.13.0'
 gem "american_date"
 gem 'mysql2', '~> 0.3.18'
 gem 'activerecord-native_db_types_override'
+gem 'unicorn', '~> 4.8.2'
 
 gem 'stockroom', git: 'https://github.com/ryanzverner/stockroom-ruby-client.git'
 
@@ -34,6 +34,9 @@ group :test, :development do
   gem "teaspoon-jasmine"
   gem "awesome_print"
   gem "better_errors", '1.1.0'
+end
+
+group :deploy do
   gem "net-ssh", '2.8.0'
   gem "capistrano", :require => false
   gem "capistrano-rails", "~> 1.4", require: false
@@ -44,10 +47,6 @@ group :test, :development do
 end
 
 gem 'simplecov', :require => false, :group => :test
-
-group :production do
-  gem 'unicorn', '~> 4.8.2'
-end
 
 gem "guard", "~> 2.14"
 
