@@ -8,8 +8,6 @@ services:
     ports:
       - 80:80
       - 443:443
-    depends_on:
-      - ruby
 
   ruby:
     build:
@@ -26,6 +24,7 @@ services:
       - "80"
     depends_on:
       - mysql
+      - nginx
     # Allow support for irb, pry, etc
     stdin_open: true
     tty: true
