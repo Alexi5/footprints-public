@@ -33,9 +33,21 @@ Using Docker to run Footprints will allow you to avoid the annoying step of
 managing multiple versions of Ruby on your host OS, and will hopefully also
 make it easier to run on a non-Mac environment.
 
-1. [Install the appropriate version of Docker](https://www.docker.com/get-started) for your host OS
+1. Local Footprints is configured to be accessed at `http://footprints.localdev`. In order to do this,
+you'll need to first update your `/etc/hosts` file:
 
-2. Once your local Docker agent is running, [use Docker Compose](https://docs.docker.com/compose/) to bring up the Rails environment:
+```bash
+sudo vim /etc/hosts
+
+# enter your password
+# at the end of the file, insert:
+
+127.0.0.1    footprints.localdev
+```
+
+2. [Install the appropriate version of Docker](https://www.docker.com/get-started) for your host OS
+
+3. Once your local Docker agent is running, [use Docker Compose](https://docs.docker.com/compose/) to bring up the Rails environment:
 
 ```bash
 cd /path/to/footprints-public
@@ -43,7 +55,7 @@ cd /path/to/footprints-public
 docker-compose up
 ```
 
-3. Next, you'll need to seed your DB:
+4. Next, you'll need to seed your DB:
 
 ```bash
 cd /path/to/footprints-public
@@ -53,9 +65,9 @@ docker-compose exec ruby bash
 bin/rake db:reset
 ```
 
-This step should run the Rails application, **which may fail if you have not run the migrations yet**. Browse to [http://localhost:3000](http://localhost:3000) and you should see a web application running.
+This step should run the Rails application, **which may fail if you have not run the migrations yet**. Browse to [http://footprints.localdev](http://footprints.localdev) and you should see a web application running.
 
-4. To manage gems, or run Rails, Bundler, or Rake commands, you will want to do that from inside of the running Ruby container:
+5. To manage gems, or run Rails, Bundler, or Rake commands, you will want to do that from inside of the running Ruby container:
 
 ```bash
 cd /path/to/footprints-public
@@ -63,9 +75,9 @@ cd /path/to/footprints-public
 docker-compose exec ruby bash
 ```
 
-5. To run the migrations, use the instructions from the previous step to open a bash session inside of the running `ruby` container, and then execute the command `bin/rake db:migrate` to run all of the migrations.
+6. To run the migrations, use the instructions from the previous step to open a bash session inside of the running `ruby` container, and then execute the command `bin/rake db:migrate` to run all of the migrations.
 
-6. To see logs from the application, use this command:
+7. To see logs from the application, use this command:
 
 ```bash
 cd /path/to/footprints-public
@@ -73,7 +85,7 @@ cd /path/to/footprints-public
 docker-compose logs -f ruby
 ```
 
-7. To bring the application back down, run `docker-compose down`
+8. To bring the application back down, run `docker-compose down`
 
 ## Running Footprints using Docker Machine
 
