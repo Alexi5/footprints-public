@@ -23,14 +23,14 @@ before_script:
 script: bundle exec rake
 jobs:
   include:
-  # - stage: test
+  - stage: test
   - stage: deploy
     script: skip
     deploy:
       provider: script
       script: "./travis-deploy.sh"
 stages:
-# - name: test
+- name: test
 - name: deploy
   on: |
     branch IS master AND \
