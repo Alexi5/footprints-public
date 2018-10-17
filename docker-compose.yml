@@ -1,5 +1,15 @@
 version: '3'
 services:
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./public:/var/www/footprints/public
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - ruby
 
   ruby:
     build:
@@ -12,8 +22,8 @@ services:
       RAILS_ENV: development
     volumes:
       - .:/app
-    ports:
-      - "3000:3000"
+    expose:
+      - "80"
     depends_on:
       - mysql
     # Allow support for irb, pry, etc
