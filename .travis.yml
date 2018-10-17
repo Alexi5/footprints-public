@@ -24,7 +24,7 @@ script: bundle exec rake
 
 jobs:
   include:
-    - stage: test
+    # - stage: test
     - stage: deploy
       script: skip
       deploy:
@@ -32,7 +32,7 @@ jobs:
         script: ./travis-deploy.sh
 
 stages:
-  - test
+  # - test
   - name: deploy
     on: |
       branch IS master AND \
