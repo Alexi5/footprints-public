@@ -48,5 +48,8 @@ require 'capistrano3/unicorn'
 # @see https://capistranorb.com/documentation/tasks/rails/ for usage instructions
 require "capistrano/rails/migrations" if ENV['RUN_MIGRATIONS']
 
+# Include the BlueGreenIpClient
+require_relative "./lib/blue_green_ip_client.rb"
+
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
 Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
