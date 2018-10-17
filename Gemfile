@@ -37,8 +37,6 @@ group :test, :development do
 end
 
 group :deploy do
-  gem 'rails', '4.0.2'
-  gem "rake", '~> 10.1.1'
   gem "net-ssh", '2.8.0'
   gem "capistrano", :require => false
   gem "capistrano-rails", "~> 1.4", require: false
