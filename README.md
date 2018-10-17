@@ -147,3 +147,18 @@ cap production deploy
 ```bash
 RUN_MIGRATIONS=1 cap production deploy
 ```
+
+### Travis Secrets
+
+To generate an encrypted rsa key, run this command:
+
+```bash
+export DEPLOY_KEY="some secret key"
+openssl aes-256-cbc -k $DEPLOY_KEY -in ~/.ssh/mongeese-footprints -out config/deploy_id_rsa_enc_travis -a
+```
+
+And then add the deploy key to travis:
+
+```bash
+travis encrypt DEPLOY_KEY=$DEPLOY_KEY
+```
