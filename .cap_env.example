@@ -12,6 +12,10 @@ set -o allexport
 # $> vim .cap_env # Set the correct values for your local machine
 # $> source .cap_env # Load the environment vars into your shell session
 
+# Your AWS credentials
+AWS_ACCESS_KEY_ID=someawsaccesskey
+AWS_SECRET_ACCESS_KEY=someawssecretaccesskey
+
 # User with deploy privileges on target machine
 CAPISTRANO_DEPLOY_USER=somedeployuser
 
