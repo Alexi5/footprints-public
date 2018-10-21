@@ -24,7 +24,7 @@ sudo vim /etc/hosts
 127.0.0.1    footprints.localdev
 ```
 
-Then follow the "Connecting Locally via HTTPS" instructions below.
+Then follow the [Connecting Locally via HTTPS](#connecting-locally-via-https) instructions below.
 
 2. [Install the appropriate version of Docker](https://www.docker.com/get-started) for your host OS
 
