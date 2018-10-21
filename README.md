@@ -12,8 +12,8 @@ Using Docker to run Footprints will allow you to avoid the annoying step of
 managing multiple versions of Ruby on your host OS, and will hopefully also
 make it easier to run on a non-Mac environment.
 
-1. Local Footprints is configured to be accessed at `http://footprints.localdev`. In order to do this,
-you'll need to first update your `/etc/hosts` file:
+1. Local Footprints is configured to be accessed at [https://footprints.localdev](https://footprints.localdev).
+In order to do this, you'll need to first update your `/etc/hosts` file:
 
 ```bash
 sudo vim /etc/hosts
@@ -23,6 +23,8 @@ sudo vim /etc/hosts
 
 127.0.0.1    footprints.localdev
 ```
+
+Then follow the "Connecting Locally via HTTPS" instructions below.
 
 2. [Install the appropriate version of Docker](https://www.docker.com/get-started) for your host OS
 
@@ -44,7 +46,7 @@ docker-compose exec ruby bash
 bin/rake db:reset
 ```
 
-This step should run the Rails application, **which may fail if you have not run the migrations yet**. Browse to [http://footprints.localdev](http://footprints.localdev) and you should see a web application running.
+This step should run the Rails application, **which may fail if you have not run the migrations yet**. Browse to [https://footprints.localdev](https://footprints.localdev) and you should see a web application running.
 
 5. To manage gems, or run Rails, Bundler, or Rake commands, you will want to do that from inside of the running Ruby container:
 
@@ -110,10 +112,7 @@ You should now be able to access footprints at [https://footprints.localdev](htt
 
 Footprints requires anybody who logs in to also be a crafter. You will have to manually add a person to the system as a crafter in order to log into Footprints.
 
-### Trello
-https://trello.com/b/GuywdyDX/footprints
-
-### Running Capistrano deploy commands
+## Running Capistrano deploy commands
 
 Footprints is deployed using Capistrano. Generally speaking, deploying the app
 should be limited to an automated task run by our CI/CD pipeline, but there may
@@ -151,7 +150,7 @@ cap production deploy
 RUN_MIGRATIONS=1 cap production deploy
 ```
 
-### Travis Secrets
+## Travis Secrets
 
 To generate an encrypted rsa key, run this command:
 
@@ -165,3 +164,6 @@ And then add the deploy key to travis:
 ```bash
 travis encrypt DEPLOY_KEY=$DEPLOY_KEY
 ```
+
+## Trello
+https://trello.com/b/GuywdyDX/footprints
