@@ -82,6 +82,30 @@ cd /path/to/footprints-public
 docker-machine-nfs default -f --shared-folder=$(pwd) --mount-opts="async,noatime,actimeo=1,nolock,vers=3,udp"
 ```
 
+## Connecting Locally via HTTPS
+
+The cert files needed by Nginx live in this repository under `docker/nginx`. They were generated using the command:
+
+```bash
+openssl req -x509 -out footprints.crt -keyout footprints.key \
+  -newkey rsa:2048 -nodes -sha256 -days 365 \
+  -subj '/CN=footprints.localdev' -extensions EXT -config <( \
+   printf "[dn]\nCN=footprints.localdev\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=@alt_names\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth\n[alt_names]\nDNS.1 = footprints.localdev\nIP.1 = 127.0.0.1")
+```
+
+This alone is enough to power SSL connections, however, our browsers will not trust the cert
+as it was self-signed by an 'untrusted' signer (our own machine). To fix this, we need to tell
+our machines that they can trust the signer:
+
+  * Open Keychain Access on you mac
+  * Select System and go to File -> Import Items
+  * Navigate to footprints-public/docker/nginx and select the file footprints.key. You will be asked for your password.
+  * Find the footprints.localdev certificate in the list and double click to edit
+  * Select Trust and set When using this certificate to Always trust
+  * Close the window and enter your password when asked
+
+You should now be able to access footprints at [https://footprints.localdev](https://footprints.localdev).
+
 #### Note
 
 Footprints requires anybody who logs in to also be a crafter. You will have to manually add a person to the system as a crafter in order to log into Footprints.
