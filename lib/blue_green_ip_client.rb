@@ -61,7 +61,9 @@ class BlueGreenIpClient
       load_balancer_arn: load_balancer_arn,
     })
 
-    resp.listeners[0].default_actions[0].target_group_arn
+    # TODO: Clarify this so we can do this deterministically without relying on
+    # array order
+    resp.listeners[1].default_actions[0].target_group_arn
   end
 
   def get_all_target_groups()
