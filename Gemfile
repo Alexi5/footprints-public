@@ -14,7 +14,7 @@ gem "jquery-ui-rails", '~> 4.2.0'
 gem "nilify_blanks", '~> 1.0.3'
 gem "highrise", '~> 3.1.5'
 gem "mail", '~> 2.5.4'
-gem "omniauth-google-oauth2", '~> 0.2.2'
+gem "omniauth-google-oauth2", '~> 0.5.3'
 gem "edn", '~> 1.0.2'
 gem "american_date"
 gem 'mysql2', '~> 0.3.18'
