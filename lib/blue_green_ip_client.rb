@@ -2,7 +2,7 @@ require 'aws-sdk-elasticloadbalancingv2'
 require 'aws-sdk-ec2'
 
 class BlueGreenIpClient
-  ELB_NAME='blue-green-elb'
+  ELB_NAME='production-elb'
 
   def initialize()
     @elb_client = Aws::ElasticLoadBalancingV2::Client.new(region: 'us-east-1')
