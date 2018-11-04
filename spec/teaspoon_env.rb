@@ -72,10 +72,6 @@ Teaspoon.configure do |config|
     # Partial to be rendered in the body tag of the runner. You can define your own to create a custom body structure.
     #suite.body_partial = "body"
 
-    # Assets to be ignored when generating coverage reports. Accepts an array of filenames or regular expressions. The
-    # default excludes assets from vendor, gems and support libraries.<br/><br/>
-    suite.no_coverage = [%r{/lib/ruby/gems/}, %r{/vendor/assets/}, %r{/support/}, %r{/(.+)_helper.}]
-
     # Hooks allow you to use `Teaspoon.hook("fixtures")` before, after, or during your spec run. This will make a
     # synchronous Ajax request to the server that will call all of the blocks you've defined for that hook name.
     #suite.hook :fixtures, proc{ }
@@ -160,6 +156,10 @@ Teaspoon.configure do |config|
   #config.use_coverage = nil
 
   config.coverage do |coverage|
+
+    # Assets to be ignored when generating coverage reports. Accepts an array of filenames or regular expressions. The
+    # default excludes assets from vendor, gems and support libraries.<br/><br/>
+    coverage.ignore = [%r{/lib/ruby/gems/}, %r{/vendor/assets/}, %r{/support/}, %r{/(.+)_helper.}]
 
     # Which coverage reports Instanbul should generate. Correlates directly to what Istanbul supports.
     #
