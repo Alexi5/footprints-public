@@ -4,6 +4,8 @@ services:
     image: nginx:latest
     volumes:
       - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/footprints.crt:/etc/ssl/certs/footprints.crt
+      - ./docker/nginx/footprints.key:/etc/ssl/private/footprints.key
       - ./public:/var/www/footprints/public
     ports:
       - 80:80
