@@ -21,6 +21,7 @@ sudo vim /etc/hosts
 # enter your password
 # at the end of the file, insert:
 
+# NOTE: if you are using docker-machine, the IP will be 192.168.99.100
 127.0.0.1    footprints.localdev
 ```
 
