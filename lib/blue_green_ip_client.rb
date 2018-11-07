@@ -63,7 +63,8 @@ class BlueGreenIpClient
 
     # TODO: Clarify this so we can do this deterministically without relying on
     # array order
-    resp.listeners[1].default_actions[0].target_group_arn
+    index = resp.listeners.index { |x| x.port == 443 }
+    resp.listeners[index].default_actions[0].target_group_arn
   end
 
   def get_all_target_groups()

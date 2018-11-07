@@ -30,6 +30,9 @@ append :linked_files, "config/database.yml"
 # This file must be provisioned at /{path defined by :deploy_to}/shared/config/mailer.yml
 append :linked_files, "config/mailer.yml"
 
+# This file must be provisioned at /{path defined by :deploy_to}/shared/config/omniauth.yml
+append :linked_files, "config/omniauth.yml"
+
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/sockets", "tmp/cache", "public/system"
 
