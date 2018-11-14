@@ -21,6 +21,10 @@ describe Applicant do
   it "has available code schools" do
     Applicant.code_schools.should_not be_empty
   end
+  
+  it "encrypts an email"  do
+    Applicant.encrypt_email(attrs[:email]).should eq "\xF3\#$ilf\xCE\xEC\x90\x9E\xA1\xC7i\x03\x7F\xD6s\xA5\x83\x9AA\xC7\xD8\xCA\xB9\x15\xC4\xA4\x03\xF4!\x93"
+  end
 
   context "validation" do
     let(:applicant) { Footprints::Repository.applicant.create(attrs) }

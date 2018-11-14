@@ -25,11 +25,14 @@ class ApplicantsController < ApplicationController
     @presenter     = ApplicantIndexPresenter.new(@applicants)
   end
 
+  # encrypt first & last name and email address
   def new
     @applicant = repo.applicant.new
   end
 
   def create
+	#calls new from Applicant repo 
+	# --> 'new' does not exist in applicant_repository, so it calls new from base_repository
     @applicant = repo.applicant.new(applicant_params)
     @applicant.save!
     redirect_to(applicant_path(@applicant), :notice => "Successfully created #{@applicant.name}")
