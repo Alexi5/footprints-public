@@ -23,7 +23,18 @@ describe Applicant do
   end
   
   it "encrypts an email"  do
-    Applicant.encrypt_email(attrs[:email]).should eq "\xF3\#$ilf\xCE\xEC\x90\x9E\xA1\xC7i\x03\x7F\xD6s\xA5\x83\x9AA\xC7\xD8\xCA\xB9\x15\xC4\xA4\x03\xF4!\x93"
+	ciphered, iv = Applicant.encrypt_email(attrs[:email])
+	Applicant.decrypt_email(ciphered, iv).should eq attrs[:email]	
+  end
+  
+  it "new applicant saves email and email gets encrypted" do	
+	applicant = Applicant.create!(attrs)
+	
+	#encrypted_email should not be blank
+	applicant.encrypted_email.should be_present
+	
+	#encrypted_email should not be applicants actual email
+	applicant.encrypted_email.should_not eq attrs[:email]
   end
 
   context "validation" do
@@ -91,7 +102,7 @@ describe Applicant do
       expect(applicant).to have(1).error_on(:start_date)
       expect(applicant).to have(1).error_on(:end_date)
     end
- end
+  end
 
   context "outstanding" do
     before :all do

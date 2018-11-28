@@ -33,6 +33,7 @@ class Applicant < ActiveRecord::Base
   before_save :nilify_blanks
   before_save :set_craftsman_data
   before_save :archive_if_decision_made
+  before_save :encrypt
 
   def self.code_schools
     [
@@ -54,6 +55,49 @@ class Applicant < ActiveRecord::Base
 
   def self.hiring_decisions
     ["no_decision", "no", "yes"]
+  end
+
+  def self.encrypt_email(email)
+	  # create cipher
+	  cipher = OpenSSL::Cipher::AES256.new :CBC
+	  
+	  # cipher it
+	  cipher.encrypt
+
+	  # set random_iv (state-ful)
+	  iv = cipher.random_iv
+	  
+	  # set key
+	  cipher.key = 'thisisthesupersecretkeytoencryptemails'
+	  
+	  # create ciphered email
+	  cipher_text = cipher.update(email) + cipher.final
+	  
+	  return cipher_text, iv
+  end
+
+  def self.decrypt_email(cipher_text, iv)
+	  decipher = OpenSSL::Cipher::AES256.new :CBC
+	  
+	  # decipher
+	  decipher.decrypt
+	  
+	  #attach random_iv 
+	  decipher.iv = iv
+	  
+	  #set key
+	  decipher.key = 'thisisthesupersecretkeytoencryptemails'
+	  
+	  deciphered = decipher.update(cipher_text) + decipher.final
+	  
+	  deciphered
+  end
+
+  def encrypt
+    if self.email.present?
+      temp, _ = Applicant.encrypt_email(self.email)
+	  self.encrypted_email = Base64.encode64(temp)
+    end
   end
 
   def valid_hiring_decision

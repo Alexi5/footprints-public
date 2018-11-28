@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181105021553) do
+ActiveRecord::Schema.define(version: 20181128193411) do
 
   create_table "annual_starting_craftsman_salaries", force: true do |t|
     t.string "location", null: false
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20181105021553) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "offered_on"
+    t.string   "encrypted_email"
   end
 
   add_index "applicants", ["craftsman_id"], name: "index_applicants_on_craftsman_id", using: :btree
