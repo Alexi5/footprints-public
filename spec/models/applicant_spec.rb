@@ -50,16 +50,16 @@ describe Applicant do
 		:salt => Base64.strict_encode64(iv)
 	)
 	# reload everything from the db
-	applicant.reload
+    applicant.reload
 	
-	applicant.email.should eq 'tester@example.com'
+    applicant.email.should eq 'tester@example.com'
   end
   
   it "saves the applicant, encrypts then decrypts the email" do
-  	app = Applicant.create!(attrs)
-	new_app = Applicant.find(app.id)
+    app = Applicant.create!(attrs)
+    new_app = Applicant.find(app.id)
 	
-	new_app.email.should eq app.email
+    new_app.email.should eq app.email
   end
 
   context "validation" do
