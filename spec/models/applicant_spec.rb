@@ -35,6 +35,31 @@ describe Applicant do
 	
 	#encrypted_email should not be applicants actual email
 	applicant.encrypted_email.should_not eq attrs[:email]
+	
+	applicant.salt.should be_present
+  end
+  
+  it "decrypts email of new applicant" do
+	# encrypt an email
+	ciphered, iv = Applicant.encrypt_email('tester@example.com')
+	# make new applicant
+	applicant = Applicant.create!(attrs)
+	# update attrs with encoded cipher and salt
+	applicant.update_columns(
+		:encrypted_email => Base64.strict_encode64(ciphered), 
+		:salt => Base64.strict_encode64(iv)
+	)
+	# reload everything from the db
+	applicant.reload
+	
+	applicant.email.should eq 'tester@example.com'
+  end
+  
+  it "saves the applicant, encrypts then decrypts the email" do
+  	app = Applicant.create!(attrs)
+	new_app = Applicant.find(app.id)
+	
+	new_app.email.should eq app.email
   end
 
   context "validation" do

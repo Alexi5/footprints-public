@@ -35,6 +35,8 @@ class Applicant < ActiveRecord::Base
   before_save :archive_if_decision_made
   before_save :encrypt
 
+  after_initialize :decrypt
+
   def self.code_schools
     [
       'None',
@@ -60,16 +62,12 @@ class Applicant < ActiveRecord::Base
   def self.encrypt_email(email)
 	  # create cipher
 	  cipher = OpenSSL::Cipher::AES256.new :CBC
-	  
 	  # cipher it
 	  cipher.encrypt
-
 	  # set random_iv (state-ful)
 	  iv = cipher.random_iv
-	  
 	  # set key
 	  cipher.key = 'thisisthesupersecretkeytoencryptemails'
-	  
 	  # create ciphered email
 	  cipher_text = cipher.update(email) + cipher.final
 	  
@@ -78,16 +76,12 @@ class Applicant < ActiveRecord::Base
 
   def self.decrypt_email(cipher_text, iv)
 	  decipher = OpenSSL::Cipher::AES256.new :CBC
-	  
 	  # decipher
 	  decipher.decrypt
-	  
 	  #attach random_iv 
 	  decipher.iv = iv
-	  
 	  #set key
 	  decipher.key = 'thisisthesupersecretkeytoencryptemails'
-	  
 	  deciphered = decipher.update(cipher_text) + decipher.final
 	  
 	  deciphered
@@ -95,9 +89,20 @@ class Applicant < ActiveRecord::Base
 
   def encrypt
     if self.email.present?
-      temp, _ = Applicant.encrypt_email(self.email)
-	  self.encrypted_email = Base64.encode64(temp)
+      cipher, salt = Applicant.encrypt_email(self.email)
+	  self.encrypted_email = Base64.strict_encode64(cipher)
+	  self.salt = Base64.strict_encode64(salt)
     end
+  end
+  
+  def decrypt
+	if self.encrypted_email.present? && self.salt.present?
+		deciphered = Applicant.decrypt_email(
+			Base64.strict_decode64(self.encrypted_email), 
+			Base64.strict_decode64(self.salt)
+		)
+		self.email = deciphered
+	end
   end
 
   def valid_hiring_decision

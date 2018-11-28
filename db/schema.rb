@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20181128193411) do
     t.datetime "updated_at"
     t.date     "offered_on"
     t.string   "encrypted_email"
+    t.string   "salt"
   end
 
   add_index "applicants", ["craftsman_id"], name: "index_applicants_on_craftsman_id", using: :btree
