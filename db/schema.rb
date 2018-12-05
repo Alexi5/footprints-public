@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181105021553) do
+ActiveRecord::Schema.define(version: 20181128193411) do
 
   create_table "annual_starting_craftsman_salaries", force: true do |t|
     t.string "location", null: false
@@ -54,11 +54,13 @@ ActiveRecord::Schema.define(version: 20181105021553) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "offered_on"
+    t.string   "encrypted_email"
+    t.string   "salt"
   end
 
-  add_index "applicants", ["craftsman_id"], name: "index_applicants_on_craftsman_id", using: :btree
-  add_index "applicants", ["name"], name: "index_applicants_on_name", using: :btree
-  add_index "applicants", ["slug"], name: "index_applicants_on_slug", unique: true, using: :btree
+  add_index "applicants", ["craftsman_id"], name: "index_applicants_on_craftsman_id"
+  add_index "applicants", ["name"], name: "index_applicants_on_name"
+  add_index "applicants", ["slug"], name: "index_applicants_on_slug", unique: true
 
   create_table "apprentices", force: true do |t|
     t.datetime "created_at"
@@ -106,10 +108,10 @@ ActiveRecord::Schema.define(version: 20181105021553) do
     t.datetime "created_at"
   end
 
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
-  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
-  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
 
   create_table "messages", force: true do |t|
     t.integer  "applicant_id"
@@ -119,7 +121,7 @@ ActiveRecord::Schema.define(version: 20181105021553) do
     t.datetime "updated_at"
   end
 
-  add_index "messages", ["applicant_id"], name: "index_messages_on_applicant_id", using: :btree
+  add_index "messages", ["applicant_id"], name: "index_messages_on_applicant_id"
 
   create_table "monthly_apprentice_salaries", force: true do |t|
     t.integer "duration", null: false
@@ -149,8 +151,8 @@ ActiveRecord::Schema.define(version: 20181105021553) do
     t.datetime "updated_at"
   end
 
-  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
-  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at"
 
   create_table "users", force: true do |t|
     t.string   "login"
