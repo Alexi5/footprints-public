@@ -61,7 +61,29 @@ describe Applicant do
 	
     new_app.email.should eq app.email
   end
+  
+  it "load an applicant with nil encrypted email & salt" do
+    applicant = Applicant.create!(attrs)
+    applicant.update_columns(
+      :encrypted_email => nil,
+      :salt => nil,
+    )
 
+    applicant.reload
+    applicant.email.should eq attrs[:email]
+  end
+
+  it "load an applicant with empty encrypted email & salt" do
+    applicant = Applicant.create!(attrs)
+    applicant.update_columns(
+      :encrypted_email => '',
+      :salt => '',
+    )
+
+    applicant.reload
+    applicant.email.should eq attrs[:email]
+  end
+  
   context "validation" do
     let(:applicant) { Footprints::Repository.applicant.create(attrs) }
 
