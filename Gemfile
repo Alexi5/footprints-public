@@ -43,6 +43,7 @@ group :deploy do
   gem "capistrano-rails", "~> 1.4", require: false
   gem "capistrano-rvm", require: false
   gem "capistrano3-unicorn", require: false
+  gem "capistrano-rake", require: false
   gem "aws-sdk-elasticloadbalancingv2"
   gem "aws-sdk-ec2"
 end

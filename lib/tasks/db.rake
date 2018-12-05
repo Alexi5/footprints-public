@@ -2,6 +2,8 @@ require 'repository'
 require 'applicants/applicant_archiver'
 
 namespace :db do
+  #Is this dangerous?
+  #Need code to get confirmation before deleted EVERYTHING
   desc "Destroys Everything from Databases"
   task :destroy_all => :environment do
     puts "Destroying Everything"
@@ -42,5 +44,15 @@ namespace :db do
       Footprints::Repository.monthly_apprentice_salary.create({:location => "Los Angeles", :duration => months, :amount => 0.00})
     end
     Footprints::Repository.annual_starting_craftsman_salary.create({:location => "Los Angeles", :amount => 0.00})
+  end
+
+  desc "Create encrypted email for existing user emails"
+  task :encrypt_existing_emails => :environment do
+    puts "Encrypting existing user emails"
+    Applicant.all.each do |app|
+        if !app.save do 
+          pp "Applicant not saved #{app}"
+        end
+    end
   end
 end
