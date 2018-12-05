@@ -21,7 +21,69 @@ describe Applicant do
   it "has available code schools" do
     Applicant.code_schools.should_not be_empty
   end
+  
+  it "encrypts an email"  do
+	ciphered, iv = Applicant.encrypt_email(attrs[:email])
+	Applicant.decrypt_email(ciphered, iv).should eq attrs[:email]	
+  end
+  
+  it "new applicant saves email and email gets encrypted" do	
+	applicant = Applicant.create!(attrs)
+	
+	#encrypted_email should not be blank
+	applicant.encrypted_email.should be_present
+	
+	#encrypted_email should not be applicants actual email
+	applicant.encrypted_email.should_not eq attrs[:email]
+	
+	applicant.salt.should be_present
+  end
+  
+  it "decrypts email of new applicant" do
+	# encrypt an email
+	ciphered, iv = Applicant.encrypt_email('tester@example.com')
+	# make new applicant
+	applicant = Applicant.create!(attrs)
+	# update attrs with encoded cipher and salt
+	applicant.update_columns(
+		:encrypted_email => Base64.strict_encode64(ciphered), 
+		:salt => Base64.strict_encode64(iv)
+	)
+	# reload everything from the db
+    applicant.reload
+	
+    applicant.email.should eq 'tester@example.com'
+  end
+  
+  it "saves the applicant, encrypts then decrypts the email" do
+    app = Applicant.create!(attrs)
+    new_app = Applicant.find(app.id)
+	
+    new_app.email.should eq app.email
+  end
+  
+  it "load an applicant with nil encrypted email & salt" do
+    applicant = Applicant.create!(attrs)
+    applicant.update_columns(
+      :encrypted_email => nil,
+      :salt => nil,
+    )
 
+    applicant.reload
+    applicant.email.should eq attrs[:email]
+  end
+
+  it "load an applicant with empty encrypted email & salt" do
+    applicant = Applicant.create!(attrs)
+    applicant.update_columns(
+      :encrypted_email => '',
+      :salt => '',
+    )
+
+    applicant.reload
+    applicant.email.should eq attrs[:email]
+  end
+  
   context "validation" do
     let(:applicant) { Footprints::Repository.applicant.create(attrs) }
 
@@ -87,7 +149,7 @@ describe Applicant do
       expect(applicant).to have(1).error_on(:start_date)
       expect(applicant).to have(1).error_on(:end_date)
     end
- end
+  end
 
   context "outstanding" do
     before :all do
