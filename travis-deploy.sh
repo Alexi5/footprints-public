@@ -8,4 +8,4 @@ chmod 600 ./config/deploy_id_rsa
 
 bundle install --without development test
 
-bundle exec cap production deploy
+RUN_MIGRATIONS=1 bundle exec cap production deploy
