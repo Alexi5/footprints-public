@@ -18,3 +18,7 @@ sinatra/
 db/*.sqlite3
 db/*.db3
 .cap_env
+.terraform/plugins
+.terraform
+.terraform.tfstate*
+terraform.tfstate*
