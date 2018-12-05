@@ -90,8 +90,8 @@ class Applicant < ActiveRecord::Base
   def encrypt
     if self.email.present?
       cipher, salt = Applicant.encrypt_email(self.email)
-	  self.encrypted_email = Base64.strict_encode64(cipher)
-	  self.salt = Base64.strict_encode64(salt)
+    self.encrypted_email = Base64.strict_encode64(cipher)
+    self.salt = Base64.strict_encode64(salt)
     end
   end
   
